@@ -1,24 +1,14 @@
-# Stage 1: Build the app
-FROM eclipse-temurin:21-jdk AS builder
+# Use an OpenJDK base image
+FROM openjdk:17-jdk-slim
 
+# Set the working directory
 WORKDIR /app
 
-COPY mvnw .          
-COPY .mvn/ .mvn
-COPY pom.xml ./
-COPY src ./src
+# Copy the jar file
+COPY target/*.jar app.jar
 
-# Give execute permission for mvnw
-RUN chmod +x mvnw
-
-RUN ./mvnw clean package -DskipTests
-
-# Stage 2: Run the app
-FROM eclipse-temurin:21-jdk
-
-WORKDIR /app
-COPY --from=builder /app/target/*.jar app.jar
-
+# Expose the port your Spring Boot app runs on
 EXPOSE 2000
 
+# Run the jar file
 ENTRYPOINT ["java", "-jar", "app.jar"]
