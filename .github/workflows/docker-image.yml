@@ -29,7 +29,7 @@ jobs:
           context: ./SpringBootProjectBackend
           file: ./SpringBootProjectBackend/backend.Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/artgallery-backend:latest
+          tags: deekshith1809/artgallery-backend:latest  # ✅ Hardcoded username
 
       - name: Build and push frontend image
         uses: docker/build-push-action@v5
@@ -37,4 +37,4 @@ jobs:
           context: ./artgalleryproj-fsad
           file: ./artgalleryproj-fsad/frontend.Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/artgallery-frontend:latest
+          tags: deekshith1809/artgallery-frontend:latest  # ✅ Hardcoded username
