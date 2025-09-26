@@ -1,4 +1,3 @@
-version: "3.9"
 
 services:
   mysqldb:
@@ -15,22 +14,25 @@ services:
       - springboot-mysql-net
 
   backend:
-    image: deekshith1809/artgallery-backend:latest   # ✅ match Docker Hub repo
+    image: deekshith1809/artgallery-backend:latest   # ✅ Ensure this image is built & pushed correctly
     container_name: springboot
     ports:
-      - "2025:2000"
-      
+      - "2025:2000"  # Expose backend on localhost:2025
     depends_on:
       - mysqldb
     restart: on-failure
     networks:
       - springboot-mysql-net
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/klustudentdb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: docker
 
   frontend:
-    image: deekshith1809/artgallery-frontend:latest  # ✅ match Docker Hub repo
+    image: deekshith1809/artgallery-frontend:latest   # ✅ Ensure this image is built & pushed correctly
     container_name: react
     ports:
-      - "3000:80"
+      - "3000:80"  # Expose frontend on localhost:3000
     depends_on:
       - backend
     restart: on-failure
