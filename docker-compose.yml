@@ -15,7 +15,7 @@ services:
       - springboot-mysql-net
 
   backend:
-    image: deekshith1809artgallery-backend:latest   # ✅ match Docker Hub repo
+    image: deekshith1809/artgallery-backend:latest   # ✅ match Docker Hub repo
     container_name: springboot
     ports:
       - "2025:2000"
