@@ -34,7 +34,6 @@ jobs:
       - name: Build and push frontend image
         uses: docker/build-push-action@v5
         with:
-          # ✅ Rename your repo folder from artgalleryproj(fsad) → artgalleryproj-fsad
           context: ./artgalleryproj-fsad
           file: ./artgalleryproj-fsad/frontend.Dockerfile
           push: true
