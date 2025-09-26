@@ -1,3 +1,4 @@
+version: "3.9"
 
 services:
   mysqldb:
@@ -14,10 +15,10 @@ services:
       - springboot-mysql-net
 
   backend:
-    image: deekshith1809/artgallery-backend:latest   # ✅ Ensure this image is built & pushed correctly
+    image: deekshith1809/artgallery-backend:latest
     container_name: springboot
     ports:
-      - "2025:2000"  # Expose backend on localhost:2025
+      - "2025:2000"
     depends_on:
       - mysqldb
     restart: on-failure
@@ -29,10 +30,10 @@ services:
       SPRING_DATASOURCE_PASSWORD: docker
 
   frontend:
-    image: deekshith1809/artgallery-frontend:latest   # ✅ Ensure this image is built & pushed correctly
+    image: deekshith1809/artgallery-frontend:latest
     container_name: react
     ports:
-      - "3000:80"  # Expose frontend on localhost:3000
+      - "3000:80"
     depends_on:
       - backend
     restart: on-failure
